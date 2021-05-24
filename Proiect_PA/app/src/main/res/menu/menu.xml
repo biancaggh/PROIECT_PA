@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+   <item  android:id="@+id/action_settings"
+       android:orderInCategory="100"
+       android:icon="@drawable/menubar"
+       app:showAsAction="ifRoom"
+       android:title="Categories" >
+       <menu>
+           <item android:title="Movies"
+               android:id="@+id/item1">
+               <menu>
+                   <item android:title="Action"
+                       android:id="@+id/item11"/>
+                   <item android:title="Animated"
+                       android:id="@+id/item12"/>
+                   <item android:title="Biography"
+                       android:id="@+id/item13"/>
+                   <item android:title="Comedy"
+                       android:id="@+id/item14"/>
+                   <item android:title="Documentary"
+                       android:id="@+id/item15"/>
+                   <item android:title="Drama"
+                       android:id="@+id/item16"/>
+                   <item android:title="Fantastic"
+                       android:id="@+id/item17"/>
+                   <item android:title="Horror"
+                       android:id="@+id/item18"/>
+                   <item android:title="Romance"
+                       android:id="@+id/item19"/>
+               </menu>
+           </item>
+
+           <item android:title="TV Series"
+               android:id="@+id/item2">
+               <menu>
+                   <item android:title="Action"
+                       android:id="@+id/item21"/>
+                   <item android:title="Animated"
+                       android:id="@+id/item22"/>
+                   <item android:title="Biography"
+                       android:id="@+id/item23"/>
+                   <item android:title="Comedy"
+                       android:id="@+id/item24"/>
+                   <item android:title="Documentary"
+                       android:id="@+id/item25"/>
+                   <item android:title="Drama"
+                       android:id="@+id/item26"/>
+                   <item android:title="Fantastic"
+                       android:id="@+id/item27"/>
+                   <item android:title="Horror"
+                       android:id="@+id/item28"/>
+                   <item android:title="Romance"
+                       android:id="@+id/item29"/>
+               </menu>
+           </item>
+           <item android:title="Actors"
+               android:id="@+id/item3"/>
+           <item android:title="Directors"
+               android:id="@+id/item4"/>
+           <item android:title="Profile"
+               android:id="@+id/item5"/>
+           <item android:title="Home"
+               android:id="@+id/item6"/>
+           <item android:title="Log out"
+               android:id="@+id/item7"/>
+       </menu>
+   </item>
+
+</menu>

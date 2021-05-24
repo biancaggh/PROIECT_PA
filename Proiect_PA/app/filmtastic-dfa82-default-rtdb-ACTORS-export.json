@@ -1,0 +1,34 @@
+{
+  "actor1" : {
+    "Age" : 40,
+    "date_birth" : "19.12.1980",
+    "full_name" : "Jacob Benjamin Gyllenhaal",
+    "image" : "https://i.guim.co.uk/img/media/29038e9c9f014ac49fb58d9ef0a8518522cf7441/0_96_3000_1800/master/3000.jpg?width=620&quality=85&auto=format&fit=max&s=b09b725f4e00c70189ccabc758aac408",
+    "movies" : {
+      "m1" : "Nightcrawler"
+    },
+    "name" : "Jake Gyllenhaal",
+    "nationality" : "American",
+    "tvseries" : {
+      "-" : "-"
+    }
+  },
+  "actor2" : {
+    "Age" : 30,
+    "Movies" : {
+      "movie1" : "Suicide Squad",
+      "movie2" : "I, Tonya"
+    },
+    "Nationality" : "Australian",
+    "TvS" : {
+      "tvs1" : "-"
+    },
+    "date_birth" : "02.07.1990",
+    "full_name" : "Margot Elise Robbie",
+    "id" : "02",
+    "image" : "https://www.imdb.com/name/nm3053338/mediaviewer/rm1008443648/",
+    "name" : "Margot Robbie",
+    "size_movies" : 2,
+    "size_tvs" : 1
+  }
+}
