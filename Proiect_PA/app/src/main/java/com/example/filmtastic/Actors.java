@@ -1,5 +1,7 @@
 package com.example.filmtastic;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +17,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import adapters.ActorsAdapter;
 import models.ActorsModel;
@@ -46,65 +60,142 @@ import tvseries.SeriesRomance;
 
 
 public class Actors extends AppCompatActivity {
-    private final String json_url="https://gist.githubusercontent.com/aws1994/f583d54e5af8e56173492d3f60dd5ebf/raw/c7796ba51d5a0d37fc756cf0fd14e54434c547bc/anime.json";
-    private JsonArrayRequest request;
-    private RequestQueue requestQueue;
-    private List<ActorsModel> actorsModelList;
-    private RecyclerView recyclerView;
+   FirebaseFirestore db;
+   RecyclerView recyclerView;
+
+
+   TextView name;
+   TextView fullname;
+   TextView date_birth;
+   TextView nationality;
+   TextView movies;
+   TextView tvseries;
+   ImageView imageView;
+   ArrayList<ActorsModel> actorsModelArrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actors);
+        setContentView(R.layout.actors_model);
 
-        actorsModelList=new ArrayList<>();
-        recyclerView=findViewById(R.id.listReycler);
-        jsonRequest();
+
+        db=FirebaseFirestore.getInstance();
+        name=findViewById(R.id.anameview);
+        fullname=findViewById(R.id.afullnameview);
+        date_birth=findViewById(R.id.adateview);
+        nationality=findViewById(R.id.anatview);
+        movies=findViewById(R.id.amoviesview);
+        tvseries=findViewById(R.id.atvsview);
+        imageView=findViewById(R.id.aimg);
+
+
+//        String[] mov={"The Invisible Man"};
+//        String[] tvs={"The Handsmaid`s Tale"};
+//
+//        Map<String,Object> actors= new HashMap<>();
+//        actors.put("name","Elisabeth Moss");
+//        actors.put("full_name","Elisabeth Singleton Moss");
+//        actors.put("date_birth","24.07.1982");
+//        actors.put("nationality","American");
+//        actors.put("movies",mov);
+//        actors.put("tvseries",tvs);
+//
+//        db.collection("ACTORS").document("3").set(actors).
+//                addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(Actors.this,"Add new Actor",Toast.LENGTH_LONG).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.d("ERROR",e.getMessage());
+//            }
+//        });
+       readActor();
+
+
     }
 
-    private void jsonRequest() {
-        request= new JsonArrayRequest(json_url, new Response.Listener<JSONArray>() {
+
+    private void readActor() {
+        List<String> list = new ArrayList<>();
+        db.collection("ACTORS").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
 
-                JSONObject jsonObject = null;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        ActorsModel actorsModel = new ActorsModel();
-                        actorsModel.setName(jsonObject.getString("name"));
-                        actorsModel.setImageURL(jsonObject.getString("image"));
-                        actorsModel.setFullname(jsonObject.getString("full_name"));
-                        actorsModel.setDate_birth(jsonObject.getString("date_birth"));
-                        actorsModel.setAge(jsonObject.getString("Age"));
-                        actorsModel.setNational(jsonObject.getString("nationality"));
-                        actorsModel.setMovies(jsonObject.getString("movies"));
-                        actorsModel.setTvseries(jsonObject.getString("tvseries"));
-
-                        actorsModelList.add(actorsModel);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(document.getId());
                     }
+                    Log.d("TAG", list.toString());
+                    System.out.println(list);
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
                 }
-                setuprecyclerview(actorsModelList);
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
             }
         });
 
-        requestQueue=Volley.newRequestQueue(Actors.this);
-        requestQueue.add(request);
-    }
+            DocumentReference documentReference = db.collection("ACTORS").document("2");
+            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot doc = task.getResult();
+
+                        StringBuilder nume = new StringBuilder("");
+                        nume.append(doc.getString("name"));
+
+                        StringBuilder full = new StringBuilder("");
+                        full.append(doc.getString("full_name"));
+
+                        StringBuilder data = new StringBuilder("");
+                        data.append(doc.getString("date_birth"));
+
+                        StringBuilder nat = new StringBuilder("");
+                        nat.append(doc.getString("nationality"));
 
 
-        public void setuprecyclerview(List<ActorsModel> actorsModelList) {
-            ActorsAdapter myAdapter = new ActorsAdapter(this, actorsModelList);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                        StringBuilder nr = new StringBuilder("");
 
-            recyclerView.setAdapter(myAdapter);
+                        int sizem = Integer.parseInt(String.valueOf(nr.append(doc.getString("msize"))));
+                        int sizet = Integer.parseInt(String.valueOf(nr.append(doc.getString("tsize"))));
+
+
+                        StringBuilder mov = new StringBuilder("");
+
+                        for (int j = 0; j < sizem; ++j) {
+                            mov.append(System.getProperty("line.separator"));
+                            mov.append(doc.get("movies" + j));
+                        }
+
+                        StringBuilder tv = new StringBuilder("");
+
+                        for (int h = 0; h < sizet; ++h) {
+                            data.append(System.getProperty("line.separator"));
+                            data.append(doc.get("tvseries" + h));
+                        }
+
+                        StringBuilder img = new StringBuilder();
+                        img.append(doc.getString("image"));
+
+
+                        name.setText(nume.toString());
+                        fullname.setText(full.toString());
+                        date_birth.setText(data.toString());
+                        nationality.setText(nat.toString());
+                        movies.setText(mov.toString());
+                        tvseries.setText(tv.toString());
+
+                        Picasso.get().load(String.valueOf(img)).into(imageView);
+
+
+                    }
+
+                }
+            });
+
         }
 
 
@@ -115,6 +206,7 @@ public class Actors extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -239,6 +331,16 @@ public class Actors extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        adapter.stopListening();
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        adapter.startListening();
+//    }
 }

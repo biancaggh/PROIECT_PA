@@ -2,30 +2,28 @@ package models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class ActorsModel {
     public static String name;
-    public static String fullname;
+    public static String full_name;
     public static String movies;
     public static String tvseries;
     public static String image;
     public static String nationality;
-    //String id;
-    public static String age;
     public static String date_birth;
 
     public ActorsModel(){
 
     }
 
-    public ActorsModel(String name, String fullname, String movies, String tvseries, String image, String nationality, String age, String date_birth) {
+    public ActorsModel(String name, String fullname, String movies, String tvseries,String image, String nationality, String date_birth) {
         this.name = name;
-        this.fullname = fullname;
+        this.full_name = fullname;
         this.movies = movies;
         this.tvseries = tvseries;
         this.image = image;
         this.nationality = nationality;
-        this.age = age;
         this.date_birth = date_birth;
     }
 
@@ -38,11 +36,11 @@ public class ActorsModel {
     }
 
     public static String getFullname() {
-        return fullname;
+        return full_name;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullname(String full_name) {
+        this.full_name = full_name;
     }
 
     public static String getMovies() {
@@ -61,11 +59,11 @@ public class ActorsModel {
         this.tvseries = tvseries;
     }
 
-    public static String getImageURL() {
+    public static String getImage() {
         return image;
     }
 
-    public void setImageURL(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -77,13 +75,6 @@ public class ActorsModel {
         this.nationality = nationality;
     }
 
-    public static String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
 
     public static String getDate_birth() {
         return date_birth;
@@ -95,7 +86,7 @@ public class ActorsModel {
 
     @Override
     public String toString() {
-        return name + '\'' + fullname + '\''+ movies + '\''  + tvseries + '\''  + image + '\'' +
-                 nationality + '\'' + age + '\'' + date_birth;
+        return name + '\'' + full_name + '\''+ movies + '\''  + tvseries + '\'' +image + '\'' +
+                 nationality + '\''+ '\'' + date_birth;
     }
 }
