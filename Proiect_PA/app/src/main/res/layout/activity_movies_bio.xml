@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +7,7 @@
     android:background="@color/light_silver"
     tools:context="movies.MoviesBio">
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
 
 
             <TextView
+                android:id="@+id/atitle"
                 android:layout_width="210dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="90dp"
@@ -29,12 +30,12 @@
                 android:layout_marginTop="100dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="Title of the movie"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="27.5dp" />
 
 
             <ImageView
+                android:id="@+id/aimg"
                 android:layout_width="238dp"
                 android:layout_height="179dp"
                 android:layout_marginStart="90dp"
@@ -42,14 +43,13 @@
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="61dp"
                 android:layout_marginRight="61dp"
-                android:layout_marginBottom="83dp"
-                android:src="@drawable/filmtastic" />
+                android:layout_marginBottom="83dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
+                android:layout_width="85dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="-60dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
@@ -59,31 +59,23 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/agenre"
+                android:layout_width="194dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-60dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
 
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="97dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Director:"
@@ -91,33 +83,24 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/adirector"
+                android:layout_width="198dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-40dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
 
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
-
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="93dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Actors:"
@@ -125,32 +108,24 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/aactors"
+                android:layout_width="198dp"
+                android:layout_height="124dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-60dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
 
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="96dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Synopsis:"
@@ -158,31 +133,23 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/asin"
+                android:layout_width="196dp"
+                android:layout_height="234dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-50dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
 
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="97dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Rating:"
@@ -190,33 +157,24 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/arate"
+                android:layout_width="201dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-40dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
-
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
 
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Release date:"
@@ -224,32 +182,24 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/arel"
+                android:layout_width="198dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-40dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
 
-            <View
-                android:layout_width="240dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="95dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/black" />
-
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="96dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
                 android:text="Runtime:"
@@ -257,16 +207,17 @@
                 android:textSize="25dp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
-                android:layout_marginLeft="240dp"
-                android:layout_marginTop="-30dp"
+                android:id="@+id/arun"
+                android:layout_width="201dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="-40dp"
                 android:fontFamily="cursive"
                 android:gravity="center"
-                android:text="something"
                 android:textColor="@color/deep_green_cyan_turquoise"
                 android:textSize="25dp" />
+
 
             <View
                 android:layout_width="407dp"
@@ -285,14 +236,13 @@
                 android:layout_marginBottom="75dp"
                 android:background="@android:color/black" />
 
-
             <Button
                 android:id="@+id/favBTN"
                 android:layout_width="45dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="330dp"
                 android:layout_marginLeft="330dp"
-                android:layout_marginTop="-625dp"
+                android:layout_marginTop="-925dp"
                 android:background="@drawable/ic_favs">
 
             </Button>

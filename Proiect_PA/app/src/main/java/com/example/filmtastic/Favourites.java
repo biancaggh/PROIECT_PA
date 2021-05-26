@@ -17,15 +17,7 @@ import movies.MoviesDrama;
 import movies.MoviesFan;
 import movies.MoviesHorror;
 import movies.MoviesRomance;
-import tvseries.SeriesAction;
-import tvseries.SeriesAnimated;
-import tvseries.SeriesBio;
-import tvseries.SeriesComedy;
-import tvseries.SeriesDoc;
-import tvseries.SeriesDrama;
-import tvseries.SeriesFan;
-import tvseries.SeriesHorror;
-import tvseries.SeriesRomance;
+
 
 public class Favourites extends AppCompatActivity {
 
@@ -87,52 +79,6 @@ public class Favourites extends AppCompatActivity {
         else
         if (id == R.id.item19) {
             Intent intent = new Intent(Favourites.this, MoviesRomance.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item21) {
-            Intent intent = new Intent(Favourites.this, SeriesAction.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item22) {
-            Intent intent = new Intent(Favourites.this, SeriesAnimated.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item23) {
-            Intent intent = new Intent(Favourites.this, SeriesBio.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item24) {
-            Intent intent = new Intent(Favourites.this, SeriesComedy.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item25) {
-            Intent intent = new Intent(Favourites.this, SeriesDoc.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item26) {
-            Intent intent = new Intent(Favourites.this, SeriesDrama.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item27) {
-            Intent intent = new Intent(Favourites.this, SeriesFan.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item28) {
-            Intent intent = new Intent(Favourites.this, SeriesHorror.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item29) {
-            Intent intent = new Intent(Favourites.this, SeriesRomance.class);
             startActivity(intent);
             return true;
         }

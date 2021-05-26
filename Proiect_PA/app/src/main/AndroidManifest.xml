@@ -17,15 +17,6 @@
         <activity android:name=".Profile" />
         <activity android:name=".Directors" />
         <activity android:name=".Actors" />
-        <activity android:name="tvseries.SeriesRomance" />
-        <activity android:name="tvseries.SeriesHorror" />
-        <activity android:name="tvseries.SeriesFan" />
-        <activity android:name="tvseries.SeriesDrama" />
-        <activity android:name="tvseries.SeriesDoc" />
-        <activity android:name="tvseries.SeriesComedy" />
-        <activity android:name="tvseries.SeriesBio" />
-        <activity android:name="tvseries.SeriesAnimated" />
-        <activity android:name="tvseries.SeriesAction" />
         <activity android:name="movies.MoviesRomance" />
         <activity android:name="movies.MoviesHorror" />
         <activity android:name="movies.MoviesFan" />

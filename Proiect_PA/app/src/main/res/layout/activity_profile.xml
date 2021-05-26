@@ -26,10 +26,10 @@
         android:layout_marginEnd="154dp"
         android:layout_marginRight="154dp"
         android:layout_marginBottom="548dp"
-        android:src="@drawable/ic_poza_profil" />
+        />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/userId"
         android:layout_width="105dp"
         android:layout_height="39dp"
         android:layout_alignParentStart="true"
@@ -44,27 +44,24 @@
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
         android:layout_marginBottom="485dp"
-        android:text="user user"
-        android:textSize="20dp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/deep_green_cyan_turquoise"/>
+        android:textColor="@color/deep_green_cyan_turquoise"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="407dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0.5dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginTop="248dp"
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
-        android:layout_marginBottom="483dp"
         android:background="@android:color/black" />
 
     <TextView
@@ -90,7 +87,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/firstName"
         android:layout_width="130dp"
         android:layout_height="32dp"
         android:layout_alignParentStart="true"
@@ -106,7 +103,6 @@
         android:layout_marginRight="49dp"
         android:layout_marginBottom="423dp"
         android:gravity="center"
-        android:text="something"
         android:textColor="@color/deep_green_cyan_turquoise"
         android:textSize="20dp" />
 
@@ -150,7 +146,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/lastName"
         android:layout_width="130dp"
         android:layout_height="32dp"
         android:layout_alignParentStart="true"
@@ -166,25 +162,22 @@
         android:layout_marginRight="51dp"
         android:layout_marginBottom="360dp"
         android:gravity="center"
-        android:text="something"
         android:textColor="@color/deep_green_cyan_turquoise"
         android:textSize="20dp" />
 
     <View
         android:layout_width="407dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0.5dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="392dp"
         android:layout_marginEnd="-4dp"
         android:layout_marginRight="-4dp"
-        android:layout_marginBottom="339dp"
         android:background="@android:color/black" />
 
     <TextView
@@ -210,7 +203,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/dateB"
         android:layout_width="130dp"
         android:layout_height="32dp"
         android:layout_alignParentStart="true"
@@ -226,25 +219,22 @@
         android:layout_marginRight="48dp"
         android:layout_marginBottom="287dp"
         android:gravity="center"
-        android:text="something"
         android:textColor="@color/deep_green_cyan_turquoise"
         android:textSize="20dp" />
 
     <View
         android:layout_width="407dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0.25dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="325dp"
         android:layout_marginEnd="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="406dp"
         android:background="@android:color/black" />
 
     <Button

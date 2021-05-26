@@ -1,14 +1,24 @@
 package com.example.filmtastic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 
 import movies.MoviesAction;
 import movies.MoviesAnimated;
@@ -19,22 +29,28 @@ import movies.MoviesDrama;
 import movies.MoviesFan;
 import movies.MoviesHorror;
 import movies.MoviesRomance;
-import tvseries.SeriesAction;
-import tvseries.SeriesAnimated;
-import tvseries.SeriesBio;
-import tvseries.SeriesComedy;
-import tvseries.SeriesDoc;
-import tvseries.SeriesDrama;
-import tvseries.SeriesFan;
-import tvseries.SeriesHorror;
-import tvseries.SeriesRomance;
 
 public class Profile extends AppCompatActivity {
     private Button fav;
+    private TextView username, firstName, lastName, date;
+    private ImageView image;
+
+    private String user, email, name;
+    private Uri photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        user = getIntent().getStringExtra("EXTRA_USER");
+
+
+
+        username=findViewById(R.id.userId);
+        firstName=findViewById(R.id.firstName);
+        lastName=findViewById(R.id.lastName);
+        date=findViewById(R.id.dateB);
+
 
         fav= (Button) findViewById(R.id.button);
         fav.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +59,29 @@ public class Profile extends AppCompatActivity {
                 openFavoritesPage();
             }
         });
+
+        getProfile();
+    }
+
+    private void getProfile() {
+
+        FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
+        mUser.getIdToken(true)
+                .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if (task.isSuccessful()) {
+                            String idToken = task.getResult().getToken();
+                            username.setText(idToken);
+                            // ...
+                            System.out.println(idToken);
+                        } else {
+                            // Handle error -> task.getException();
+                        }
+                    }
+                });
+        System.out.println("-----------------------------------------");
+        System.out.println(mUser);
+
 
     }
 
@@ -106,52 +145,7 @@ public class Profile extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        else
-        if (id == R.id.item21) {
-            Intent intent = new Intent(Profile.this, SeriesAction.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item22) {
-            Intent intent = new Intent(Profile.this, SeriesAnimated.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item23) {
-            Intent intent = new Intent(Profile .this, SeriesBio.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item24) {
-            Intent intent = new Intent(Profile.this, SeriesComedy.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item25) {
-            Intent intent = new Intent(Profile.this, SeriesDoc.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item26) {
-            Intent intent = new Intent(Profile.this, SeriesDrama.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item27) {
-            Intent intent = new Intent(Profile.this, SeriesFan.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item28) {
-            Intent intent = new Intent(Profile.this, SeriesHorror.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item29) {
-            Intent intent = new Intent(Profile.this, SeriesRomance.class);
-            startActivity(intent);
-            return true;
-        }
+
         else if(id == R.id.item3){
             Intent intent = new Intent (Profile.this,Actors.class);
             startActivity(intent);

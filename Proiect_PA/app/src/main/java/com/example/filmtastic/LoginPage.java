@@ -88,6 +88,7 @@ public class LoginPage extends AppCompatActivity {
 
     private void updateUI() {
         intent= new Intent(this,MainPage.class);
+        intent.putExtra("EXTRA_USER", String.valueOf(user));
         startActivity(intent);
         finish();
 
@@ -98,14 +99,4 @@ public class LoginPage extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser acc= mAuth.getCurrentUser();
-
-        if(acc!=null){
-            //user ul e conectat deja doar il ducem catre MainPage
-            updateUI();;
-        }
-    }
 }

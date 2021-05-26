@@ -49,15 +49,6 @@ import movies.MoviesDrama;
 import movies.MoviesFan;
 import movies.MoviesHorror;
 import movies.MoviesRomance;
-import tvseries.SeriesAction;
-import tvseries.SeriesAnimated;
-import tvseries.SeriesBio;
-import tvseries.SeriesComedy;
-import tvseries.SeriesDoc;
-import tvseries.SeriesDrama;
-import tvseries.SeriesFan;
-import tvseries.SeriesHorror;
-import tvseries.SeriesRomance;
 
 
 public class Actors extends AppCompatActivity {
@@ -65,13 +56,13 @@ public class Actors extends AppCompatActivity {
    RecyclerView recyclerView;
 
 
-   TextView name;
-   TextView fullname;
-   TextView date_birth;
-   TextView nationality;
-   TextView movies;
-   TextView tvseries;
-   ImageView imageView;
+   TextView name,name1, name2;
+   TextView fullname,fullname1, fullname2;
+   TextView date_birth, date_birth1,date_birth2;
+   TextView nationality, nationality1,nationality2;
+   TextView movies, movies1,movies2;
+   TextView tvseries,tvseries1,tvseries2;
+   ImageView imageView,imageView1,imageView2;
    ArrayList<ActorsModel> actorsModelArrayList;
 
 
@@ -82,6 +73,7 @@ public class Actors extends AppCompatActivity {
 
 
         db=FirebaseFirestore.getInstance();
+
         name=findViewById(R.id.anameview);
         fullname=findViewById(R.id.afullnameview);
         date_birth=findViewById(R.id.adateview);
@@ -91,16 +83,35 @@ public class Actors extends AppCompatActivity {
         imageView=findViewById(R.id.aimg);
 
 
-//        String[] mov={"The Invisible Man"};
-//        String[] tvs={"The Handsmaid`s Tale"};
-//
+        name1=findViewById(R.id.anameview1);
+        fullname1=findViewById(R.id.afullnameview1);
+        date_birth1=findViewById(R.id.adateview1);
+        nationality1=findViewById(R.id.anatview1);
+        movies1=findViewById(R.id.amoviesview1);
+        tvseries1=findViewById(R.id.atvsview1);
+        imageView1=findViewById(R.id.aimg1);
+
+
+        name2=findViewById(R.id.anameview2);
+        fullname2=findViewById(R.id.afullnameview2);
+        date_birth2=findViewById(R.id.adateview2);
+        nationality2=findViewById(R.id.anatview2);
+        movies2=findViewById(R.id.amoviesview2);
+        tvseries2=findViewById(R.id.atvsview2);
+        imageView2=findViewById(R.id.aimg2);
+
 //        Map<String,Object> actors= new HashMap<>();
-//        actors.put("name","Elisabeth Moss");
-//        actors.put("full_name","Elisabeth Singleton Moss");
-//        actors.put("date_birth","24.07.1982");
-//        actors.put("nationality","American");
-//        actors.put("movies",mov);
-//        actors.put("tvseries",tvs);
+//        actors.put("name","Sebastian Stan");
+//        actors.put("full_name","Sebastian Stan");
+//        actors.put("date_birth","13.08.1982");
+//        actors.put("nationality","Romanian");
+//        actors.put("movies0","Captain America: The Winter Soldier");
+        //actors.put("movies1","Avengers: Infinity War");
+//        actors.put("tvseries0","Once Upon A Time");
+        //actors.put("tvseries1","The Falcon and The Winter Soldier");
+//        actors.put("msize","2");
+//        actors.put("tsize","2");
+//        actors.put("image","https://retetesivedete.ro/wp-content/uploads/2020/12/sebastian-stan-1024x615.jpg");
 //
 //        db.collection("ACTORS").document("3").set(actors).
 //                addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -115,8 +126,26 @@ public class Actors extends AppCompatActivity {
 //            }
 //        });
        readActor();
+       showData();
 
 
+    }
+
+    private void showData() {
+        db.collection("ACTORS").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("TAG", document.getId()+"=>"+document.getData());
+                    }
+
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 
 
@@ -138,7 +167,7 @@ public class Actors extends AppCompatActivity {
             }
         });
 
-            DocumentReference documentReference = db.collection("ACTORS").document("2");
+            DocumentReference documentReference = db.collection("ACTORS").document("1");
             documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -174,8 +203,8 @@ public class Actors extends AppCompatActivity {
                         StringBuilder tv = new StringBuilder("");
 
                         for (int h = 0; h < sizet; ++h) {
-                            data.append(System.getProperty("line.separator"));
-                            data.append(doc.get("tvseries" + h));
+                            tv.append(System.getProperty("line.separator"));
+                            tv.append(doc.get("tvseries" + h));
                         }
 
                         StringBuilder img = new StringBuilder();
@@ -197,7 +226,127 @@ public class Actors extends AppCompatActivity {
                 }
             });
 
-        }
+        DocumentReference documentReference1 = db.collection("ACTORS").document("2");
+        documentReference1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+
+                    StringBuilder nume1 = new StringBuilder("");
+                    nume1.append(doc.getString("name"));
+
+                    StringBuilder full1 = new StringBuilder("");
+                    full1.append(doc.getString("full_name"));
+
+                    StringBuilder data1 = new StringBuilder("");
+                    data1.append(doc.getString("date_birth"));
+
+                    StringBuilder nat1 = new StringBuilder("");
+                    nat1.append(doc.getString("nationality"));
+
+
+                    StringBuilder nr1 = new StringBuilder("");
+
+                    int sizem = Integer.parseInt(String.valueOf(nr1.append(doc.getString("msize"))));
+                    int sizet = Integer.parseInt(String.valueOf(nr1.append(doc.getString("tsize"))));
+
+
+                    StringBuilder mov1 = new StringBuilder("");
+
+                    for (int j = 0; j < sizem; ++j) {
+                        mov1.append(System.getProperty("line.separator"));
+                        mov1.append(doc.get("movies" + j));
+                    }
+
+                    StringBuilder tv1 = new StringBuilder("");
+
+                    for (int h = 0; h < sizet; ++h) {
+                        tv1.append(System.getProperty("line.separator"));
+                        tv1.append(doc.get("tvseries" + h));
+                    }
+
+                    StringBuilder img1 = new StringBuilder();
+                    img1.append(doc.getString("image"));
+
+
+                    name1.setText(nume1.toString());
+                    fullname1.setText(full1.toString());
+                    date_birth1.setText(data1.toString());
+                    nationality1.setText(nat1.toString());
+                    movies1.setText(mov1.toString());
+                    tvseries1.setText(tv1.toString());
+
+                    Picasso.get().load(String.valueOf(img1)).into(imageView1);
+
+
+                }
+
+            }
+        });
+
+
+        DocumentReference documentReference2 = db.collection("ACTORS").document("3");
+        documentReference2.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+
+                    StringBuilder nume1 = new StringBuilder("");
+                    nume1.append(doc.getString("name"));
+
+                    StringBuilder full1 = new StringBuilder("");
+                    full1.append(doc.getString("full_name"));
+
+                    StringBuilder data1 = new StringBuilder("");
+                    data1.append(doc.getString("date_birth"));
+
+                    StringBuilder nat1 = new StringBuilder("");
+                    nat1.append(doc.getString("nationality"));
+
+
+                    StringBuilder nr1 = new StringBuilder("");
+
+                    int sizem = Integer.parseInt(String.valueOf(nr1.append(doc.getString("msize"))));
+                    int sizet = Integer.parseInt(String.valueOf(nr1.append(doc.getString("tsize"))));
+
+
+                    StringBuilder mov1 = new StringBuilder("");
+
+                    for (int j = 0; j < sizem; ++j) {
+                        mov1.append(System.getProperty("line.separator"));
+                        mov1.append(doc.get("movies" + j));
+                    }
+
+                    StringBuilder tv1 = new StringBuilder("");
+
+                    for (int h = 0; h < sizet; ++h) {
+                        tv1.append(System.getProperty("line.separator"));
+                        tv1.append(doc.get("tvseries" + h));
+                    }
+
+                    StringBuilder img1 = new StringBuilder();
+                    img1.append(doc.getString("image"));
+
+
+                    name2.setText(nume1.toString());
+                    fullname2.setText(full1.toString());
+                    date_birth2.setText(data1.toString());
+                    nationality2.setText(nat1.toString());
+                    movies2.setText(mov1.toString());
+                    tvseries2.setText(tv1.toString());
+
+                    Picasso.get().load(String.valueOf(img1)).into(imageView2);
+
+
+                }
+
+            }
+        });
+
+
+    }
 
 
 
@@ -258,52 +407,7 @@ public class Actors extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        else
-        if (id == R.id.item21) {
-            Intent intent = new Intent(Actors.this, SeriesAction.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item22) {
-            Intent intent = new Intent(Actors.this, SeriesAnimated.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item23) {
-            Intent intent = new Intent(Actors.this, SeriesBio.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item24) {
-            Intent intent = new Intent(Actors.this, SeriesComedy.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item25) {
-            Intent intent = new Intent(Actors.this, SeriesDoc.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item26) {
-            Intent intent = new Intent(Actors.this, SeriesDrama.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item27) {
-            Intent intent = new Intent(Actors.this, SeriesFan.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item28) {
-            Intent intent = new Intent(Actors.this, SeriesHorror.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item29) {
-            Intent intent = new Intent(Actors.this, SeriesRomance.class);
-            startActivity(intent);
-            return true;
-        }
+
         else if(id == R.id.item3){
             Intent intent = new Intent (Actors.this,Actors.class);
             startActivity(intent);
@@ -332,16 +436,5 @@ public class Actors extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        adapter.stopListening();
-//    }
-//
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        adapter.startListening();
-//    }
+
 }

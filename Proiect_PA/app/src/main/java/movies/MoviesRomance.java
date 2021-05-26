@@ -1,12 +1,18 @@
 package movies;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.filmtastic.Actors;
 import com.example.filmtastic.Directors;
@@ -14,22 +20,195 @@ import com.example.filmtastic.LoginPage;
 import com.example.filmtastic.MainPage;
 import com.example.filmtastic.Profile;
 import com.example.filmtastic.R;
-import tvseries.SeriesAction;
-import tvseries.SeriesAnimated;
-import tvseries.SeriesBio;
-import tvseries.SeriesComedy;
-import tvseries.SeriesDoc;
-import tvseries.SeriesDrama;
-import tvseries.SeriesFan;
-import tvseries.SeriesHorror;
-import tvseries.SeriesRomance;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class MoviesRomance extends AppCompatActivity {
+
+    FirebaseFirestore db;
+    RecyclerView recyclerView;
+
+
+    TextView title;
+    TextView genre;
+    TextView director;
+    TextView actors;
+    TextView runtime;
+    TextView rating, synopsys,release;
+    ImageView imageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies_romance);
+
+
+        db=FirebaseFirestore.getInstance();
+
+        title=findViewById(R.id.atitle);
+        genre=findViewById(R.id.agenre);
+        director=findViewById(R.id.adirector);
+        actors=findViewById(R.id.aactors);
+        runtime=findViewById(R.id.arun);
+        rating=findViewById(R.id.arate);
+        synopsys=findViewById(R.id.asin);
+        release=findViewById(R.id.arel);
+        imageView=findViewById(R.id.aimg);
+
+
+
+//
+//        Map<String,Object> action= new HashMap<>();
+//        action.put("title","Memoirs of a Geisha");
+//        action.put("director","Rob Marshall");
+//        action.put("genre0","Romance");
+//        action.put("genre1","Drama");
+//        action.put("actor0","Ken Watanabe");
+//        action.put("actor1","Ziyi Zhang");
+//        action.put("actor2","Michelle Yeoh");
+//        action.put("gsize","2");
+//        action.put("asize","3");
+//        action.put("image","https://d1nslcd7m2225b.cloudfront.net/Pictures/480xAny/4/3/0/1111430_Memoirs_of_a_Geisha.jpg");
+//        action.put("runtime","145 min");
+//        action.put("rating","7.3");
+//        action.put("release_date","14.04.2006");
+//        action.put("synopsys","Nitta Sayuri reveals how she transcended her fishing-village roots and became one of Japan's most celebrated geisha.");
+//
+//        db.collection("/MOVIES/movies/horror").document("2").set(action).
+//                addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Toast.makeText(MoviesRomance.this,"Add new Romance Movie", Toast.LENGTH_LONG).show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Log.d("ERROR",e.getMessage());
+//            }
+//        });
+
+        readMovie();
+        showData();
+
+    }
+
+    private void showData() {
+        db.collection("/MOVIES/movies/romance").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("TAG", document.getId()+"=>"+document.getData());
+                    }
+
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+    }
+
+    private void readMovie() {
+        List<String> list = new ArrayList<>();
+        db.collection("/MOVIES/movies/romance").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        list.add(document.getId());
+                    }
+                    Log.d("TAG", list.toString());
+                    System.out.println(list);
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+
+        DocumentReference documentReference = db.collection("/MOVIES/movies/romance").document("1");
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+
+                    StringBuilder titl = new StringBuilder("");
+                    titl.append(doc.getString("title"));
+
+                    StringBuilder nr = new StringBuilder("");
+
+                    int sizeg = Integer.parseInt(String.valueOf(nr.append(doc.getString("gsize"))));
+                    int sizea = Integer.parseInt(String.valueOf(nr.append(doc.getString("asize"))));
+
+                    StringBuilder full = new StringBuilder("");
+                    full.append(doc.getString("director"));
+
+                    StringBuilder data = new StringBuilder("");
+                    data.append(doc.getString("release_date"));
+
+                    StringBuilder nat = new StringBuilder("");
+                    nat.append(doc.getString("runtime"));
+
+
+                    StringBuilder rat=new StringBuilder("");
+                    rat.append(doc.getString("rating"));
+
+                    StringBuilder sino=new StringBuilder("");
+                    sino.append(doc.getString("synopsys"));
+
+                    StringBuilder mov = new StringBuilder("");
+
+                    for (int j = 0; j < sizeg-1; ++j) {
+                        mov.append(doc.get("genre" + j));
+                        mov.append("|");
+                    }
+                    mov.append(doc.get("genre" + (sizeg-1)));
+
+                    StringBuilder tv = new StringBuilder("");
+
+                    for (int h = 0; h < sizea; ++h) {
+                        tv.append(System.getProperty("line.separator"));
+                        tv.append(doc.get("actor" + h));
+                    }
+
+                    StringBuilder img = new StringBuilder();
+                    img.append(doc.getString("image"));
+
+
+
+                    title.setText(titl.toString());
+                    director.setText(full.toString());
+                    release.setText(data.toString());
+                    runtime.setText(nat.toString());
+                    genre.setText(mov.toString());
+                    actors.setText(tv.toString());
+                    rating.setText(rat.toString());
+                    synopsys.setText(sino.toString());
+
+                    Picasso.get().load(String.valueOf(img)).into(imageView);
+
+
+                }
+
+            }
+        });
     }
 
     @Override
@@ -89,52 +268,6 @@ public class MoviesRomance extends AppCompatActivity {
         else
         if (id == R.id.item19) {
             Intent intent = new Intent(MoviesRomance.this, MoviesRomance.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item21) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesAction.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item22) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesAnimated.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item23) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesBio.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item24) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesComedy.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item25) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesDoc.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item26) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesDrama.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item27) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesFan.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item28) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesHorror.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item29) {
-            Intent intent = new Intent(MoviesRomance.this, SeriesRomance.class);
             startActivity(intent);
             return true;
         }

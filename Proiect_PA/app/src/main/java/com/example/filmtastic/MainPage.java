@@ -17,22 +17,17 @@ import movies.MoviesDrama;
 import movies.MoviesFan;
 import movies.MoviesHorror;
 import movies.MoviesRomance;
-import tvseries.SeriesAction;
-import tvseries.SeriesAnimated;
-import tvseries.SeriesBio;
-import tvseries.SeriesComedy;
-import tvseries.SeriesDoc;
-import tvseries.SeriesDrama;
-import tvseries.SeriesFan;
-import tvseries.SeriesHorror;
-import tvseries.SeriesRomance;
+
 
 public class MainPage extends AppCompatActivity {
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
+
+        user = getIntent().getStringExtra("EXTRA_USER");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,52 +89,6 @@ public class MainPage extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-        else
-        if (id == R.id.item21) {
-            Intent intent = new Intent(MainPage.this, SeriesAction.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item22) {
-            Intent intent = new Intent(MainPage.this, SeriesAnimated.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item23) {
-            Intent intent = new Intent(MainPage.this, SeriesBio.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item24) {
-            Intent intent = new Intent(MainPage.this, SeriesComedy.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item25) {
-            Intent intent = new Intent(MainPage.this, SeriesDoc.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item26) {
-            Intent intent = new Intent(MainPage.this, SeriesDrama.class);
-            startActivity(intent);
-            return true;
-        }else if (id == R.id.item27) {
-            Intent intent = new Intent(MainPage.this, SeriesFan.class);
-            startActivity(intent);
-            return true;
-        }else
-        if (id == R.id.item28) {
-            Intent intent = new Intent(MainPage.this, SeriesHorror.class);
-            startActivity(intent);
-            return true;
-        }
-        else
-        if (id == R.id.item29) {
-            Intent intent = new Intent(MainPage.this, SeriesRomance.class);
-            startActivity(intent);
-            return true;
-        }
         else if(id == R.id.item3){
             Intent intent = new Intent (MainPage.this,Actors.class);
             startActivity(intent);
@@ -152,6 +101,7 @@ public class MainPage extends AppCompatActivity {
         }
          else if(id == R.id.item5){
             Intent intent = new Intent (MainPage.this,Profile.class);
+            intent.putExtra("EXTRA_USER", String.valueOf(user));
             startActivity(intent);
             return true;
         }

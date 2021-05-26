@@ -32,29 +32,6 @@
                </menu>
            </item>
 
-           <item android:title="TV Series"
-               android:id="@+id/item2">
-               <menu>
-                   <item android:title="Action"
-                       android:id="@+id/item21"/>
-                   <item android:title="Animated"
-                       android:id="@+id/item22"/>
-                   <item android:title="Biography"
-                       android:id="@+id/item23"/>
-                   <item android:title="Comedy"
-                       android:id="@+id/item24"/>
-                   <item android:title="Documentary"
-                       android:id="@+id/item25"/>
-                   <item android:title="Drama"
-                       android:id="@+id/item26"/>
-                   <item android:title="Fantastic"
-                       android:id="@+id/item27"/>
-                   <item android:title="Horror"
-                       android:id="@+id/item28"/>
-                   <item android:title="Romance"
-                       android:id="@+id/item29"/>
-               </menu>
-           </item>
            <item android:title="Actors"
                android:id="@+id/item3"/>
            <item android:title="Directors"
